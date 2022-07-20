@@ -1,22 +1,22 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld />
-      <v-btn class="mx-2" fab dark small color="primary">
-        <v-icon dark> mdi-minus </v-icon>
-      </v-btn>
+      <HeaderHome />
+      <InputUser />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import HeaderHome from './components/HeaderHome';
+import InputUser from './components/InputUser';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    HeaderHome,
+    InputUser,
   },
 
   data: () => ({
