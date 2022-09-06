@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
 
@@ -6,16 +7,33 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
+
   state: {
     sentence: '',
     url: '',
-    author: ''
+    author: '',
+    debug: 'Debug works'
   },
   mutations: {
+    setSentence(state, payload) {
+      state.sentence = payload
+  },
 
   },
   actions: {
-    
-  }
+    fetchSentence({ commit }, payload) {
+       commit('setSentence', payload)
+    },
+
+    setUrl({commit }, inputUrl){
+      state.url = inputUrl
+    },
+
+    setAuthor({ commit }, inputAuthor){
+
+    },
+},
 })
+
+export default store;

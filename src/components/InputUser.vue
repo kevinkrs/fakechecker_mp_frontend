@@ -1,3 +1,27 @@
+<script>
+
+export default {
+  name: 'InputUser',
+  data () {
+    return {
+    sentence: '',
+    url: '',
+    author: '',
+    debug:'',
+  }
+  },
+  methods: {
+    setSentence() {
+      console.log(this.sentence)
+      this.$store.commit('setSentence', this.sentence)
+    },
+    test() {
+      console.log("works")
+    }
+  }
+};
+</script>
+
 <template>
   <div id="InputUser">
     <v-content>
@@ -10,15 +34,11 @@
           clearable
           style="width: 500px"
           outlined
+          v-model="sentence"
         ></v-textarea>
-        <v-btn elevation="2" x-large color="primary"> Check it</v-btn>
+        <v-btn elevation="2" x-large color="primary" @click=setSentence> Check </v-btn>
       </v-container>
     </v-content>
+    <div>{{ this.sentence }}</div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'InputUser',
-};
-</script>
