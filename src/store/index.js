@@ -4,36 +4,21 @@ import { createStore } from 'vuex'
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import mutations from './mutations'
+import state from "./state"
+import actions from "./actions"
+import getters from "./getters"
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-
-  state: {
-    sentence: '',
-    url: '',
-    author: '',
-    debug: 'Debug works'
-  },
-  mutations: {
-    setSentence(state, payload) {
-      state.sentence = payload
-  },
+  modules: {
 
   },
-  actions: {
-    fetchSentence({ commit }, payload) {
-       commit('setSentence', payload)
-    },
-
-    setUrl({commit }, inputUrl){
-      state.url = inputUrl
-    },
-
-    setAuthor({ commit }, inputAuthor){
-
-    },
-},
+  actions,
+  mutations,
+  state,
+  getters,
 })
 
 export default store;
