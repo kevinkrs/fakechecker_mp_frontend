@@ -1,6 +1,9 @@
 const getters = {
-    getCurrentInput(state){
-        return state.sentence
+    getStatement(state){
+        return state.text
+    },
+    getInferenceResult(state){
+        return state.result
     }
 }
 

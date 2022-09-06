@@ -1,7 +1,10 @@
 const mutations = {
-    setSentence(state, payload) {
-      state.sentence = payload
+  setStatement(state, payload) {
+      state.text = payload
     },
+    saveInferenceResult(state, result) {
+      state.result = result
+    }
   }
 
 export default mutations;
