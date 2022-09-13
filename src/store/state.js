@@ -1,5 +1,5 @@
 const state = {
-    text: null,
+    statement: null,
     statementdate: null,
     url: null,
     author: null,

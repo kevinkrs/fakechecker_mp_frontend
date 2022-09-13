@@ -1,14 +1,16 @@
+/* eslint-disable */
 import axios from "axios";
-import store from "@/store";
 
 
-const axios = require('axios');
-BASE_URL = '1'
 
-function getPrediction(){
-    return axios.post(`${BASE_URL}/api/predict`, {
-        sentence: this.$state.getters['getSentence']
+axios.defaults.baseURL = 'http://127.0.0.1:8000'
+axios.defaults.headers.common['Content-Type'] = 'application/json'
+
+export function getPrediction({ statement, statementdate }){
+    console.log(statement)
+    return axios.post(`/api/predict`, {
+            text: statement,
+            statementdate: statementdate,
         }
     )
-    .then((resp) => this.$state.dispatch("saveInference", resp))
 }

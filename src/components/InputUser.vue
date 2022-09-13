@@ -4,20 +4,26 @@ export default {
   name: 'InputUser',
   data () {
     return {
-    sentence: '',
+    statement: '',
+    statementdate: '',
     url: '',
     author: '',
-    currentSentence: null,
+    currentState: null,
+    currentDate: null,
   }
   },
   methods: {
-    setSentence() {
-      console.log(this.sentence)
-      this.$store.dispatch('fetchSentence', this.sentence)
+    async setStatement() {
+      this.$store.dispatch('fetchStatement', {
+        statement: this.statement,
+        statementdate: this.statementdate
+      })
     },
-    getSentence() {
-      this.currentSentence = this.$store.getters['getCurrentInput']
-      console.log(this.$store.getters['getCurrentInput'])
+    getState() {
+      this.currentState = this.$store.getters['getStatement']
+    },
+    getDate(){
+      this.currentDate = this.$store.getters['getDate']
     }
   }
 };
@@ -35,10 +41,24 @@ export default {
           clearable
           style="width: 500px"
           outlined
-          v-model="sentence"
+          required
+          v-model="statement"
         ></v-textarea>
-        <v-btn elevation="2" x-large color="primary" @click=setSentence> Check </v-btn>
+        <v-textarea
+          name="input-2-1"
+          label="Enter statement date"
+          placeholder="2020-05-12"
+          clearable
+          required
+          style="width: 500px"
+          outlined
+          v-model="statementdate">
+        </v-textarea>
+        <v-btn elevation="2" x-large color="primary" @click="setStatement"> Check </v-btn>
       </v-container>
+      <v-btn elevation="2" x-large color="primary" @click="getState(); getDate()"> Check </v-btn>
+      {{currentState}}
+      {{currentDate}}
     </v-main>
   </div>
 </template>

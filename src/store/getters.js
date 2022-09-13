@@ -1,6 +1,9 @@
 const getters = {
     getStatement(state){
-        return state.text
+        return state.statement
+    },
+    getDate(state) {
+        return state.statementdate
     },
     getInferenceResult(state){
         return state.result

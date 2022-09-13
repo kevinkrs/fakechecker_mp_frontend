@@ -1,11 +1,12 @@
 
+import { getPrediction } from '@/api'
+
 const actions =  {
-    fetchStatement({ commit }, payload) {
+    async fetchStatement({ commit}, payload) {
       commit('setStatement', payload)
+      await getPrediction(payload)
+      .then((resp) => commit('saveInferenceResult', resp))
     },
-    fetchInference({ commit }, value) {
-      commit('saveInferenceResult', value )
-    }
 }
 
 export default actions;
