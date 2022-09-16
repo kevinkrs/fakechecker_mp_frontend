@@ -5,8 +5,8 @@ const mutations = {
       state.statement = statement
       state.statementdate = statementdate
     },
-    saveInferenceResult(state, result) {
-      state.result = result
+    saveInferenceResult(state, data) {
+      state.result = data
     },
   }
 

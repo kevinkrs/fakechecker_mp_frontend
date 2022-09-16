@@ -9,8 +9,9 @@ axios.defaults.headers.common['Content-Type'] = 'application/json'
 export function getPrediction({ statement, statementdate }){
     console.log(statement)
     return axios.post(`/api/predict`, {
-            text: statement,
-            statementdate: statementdate,
-        }
-    )
+        text: statement,
+        statementdate: statementdate,
+    })
+
+
 }

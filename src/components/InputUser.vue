@@ -1,5 +1,6 @@
 <script>
 import { getPrediction } from '@/api';
+import store from '@/store/index'
 
 export default {
   name: 'InputUser',
@@ -21,11 +22,14 @@ export default {
         statement: this.statement,
         statementdate: this.statementdate
       }).then((resp) => this.response = resp.data)
-      this.$store.dispatch('saveInferenceResult', this.response)
+      store.dispatch('saveInferenceResult', this.response)
       this.loading = false
     },
     fetchStatement(){
-      this.$store.dispatch()
+      store.dispatch('fetchStatement', {
+        statement: this.statement,
+        statementdate: this.statementdate
+      })
     },
     getState() {
       this.currentState = this.$store.getters['getStatement']
