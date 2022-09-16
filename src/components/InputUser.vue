@@ -1,4 +1,5 @@
 <script>
+import { getPrediction } from '@/api';
 
 export default {
   name: 'InputUser',
@@ -10,20 +11,30 @@ export default {
     author: '',
     currentState: null,
     currentDate: null,
+    response: null,
+    loading: true
   }
   },
   methods: {
-    async setStatement() {
-      this.$store.dispatch('fetchStatement', {
+    async predict() {
+      await getPrediction({
         statement: this.statement,
         statementdate: this.statementdate
-      })
+      }).then((resp) => this.response = resp.data)
+      this.$store.dispatch('saveInferenceResult', this.response)
+      this.loading = false
+    },
+    fetchStatement(){
+      this.$store.dispatch()
     },
     getState() {
       this.currentState = this.$store.getters['getStatement']
     },
     getDate(){
       this.currentDate = this.$store.getters['getDate']
+    },
+    getResponse(){
+
     }
   }
 };
@@ -54,11 +65,8 @@ export default {
           outlined
           v-model="statementdate">
         </v-textarea>
-        <v-btn elevation="2" x-large color="primary" @click="setStatement"> Check </v-btn>
+        <v-btn elevation="2" x-large color="primary" @click="predict"> Check </v-btn>
       </v-container>
-      <v-btn elevation="2" x-large color="primary" @click="getState(); getDate()"> Check </v-btn>
-      {{currentState}}
-      {{currentDate}}
     </v-main>
   </div>
 </template>
