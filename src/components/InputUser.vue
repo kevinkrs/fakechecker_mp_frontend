@@ -166,7 +166,12 @@ export default {
                 v-model='selectedHistoryItem'
                 @click='setHistoryData(item)'
               >
-                <v-list-item-title>{{ item.statement }}</v-list-item-title>
+                <v-list-item-icon>
+                  <v-list-item-title v-text='item.results.prob_max.toFixed(2)'></v-list-item-title>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text='`${item.statement.substring(0,10)}...`'></v-list-item-title>
+                </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
           </v-menu>
