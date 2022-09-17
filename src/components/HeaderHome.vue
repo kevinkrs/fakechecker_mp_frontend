@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'HeaderHome',
+};
+</script>
+
 <template>
   <div id="HeaderHome">
     <v-app-bar color="primary" dark app>
@@ -11,9 +17,3 @@
     </v-app-bar>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'HeaderHome',
-};
-</script>

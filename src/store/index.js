@@ -14,14 +14,14 @@ import * as Cookies from 'js-cookie'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  plugins: [
-   createPersistedState({
-    getState: (key) => Cookies.getJSON(key),
-    setState: (key, state) => Cookies.set(key, state, { expires: 3, secure: true })
-   })
+  // plugins: [
+  //  createPersistedState({
+  //   getState: (key) => Cookies.getJSON(key),
+  //   setState: (key, state) => Cookies.set(key, state, { expires: 3, secure: true })
+  //  })
 
-  ],
-  modules,
+  // ],
+  modules: {},
   actions,
   mutations,
   state,
