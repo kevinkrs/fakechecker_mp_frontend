@@ -1,12 +1,15 @@
 const getters = {
-    getStatement(state){
+    getStatement(state) {
         return state.statement
     },
     getDate(state) {
         return state.statementdate
     },
-    getInferenceResult(state){
+    getInferenceResult(state) {
         return state.result
+    },
+    getHistory(state) {
+        return state.history
     }
 }
 

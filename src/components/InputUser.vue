@@ -1,20 +1,29 @@
 <script>
 import { getPrediction } from '@/api';
 import store from '@/store/index';
+import InferenceDashboard from '@/components/InferenceDashboard';
 
 export default {
   name: 'InputUser',
+  components: { InferenceDashboard },
   data() {
     return {
       statement: '',
       statementdate: '',
       url: '',
       author: '',
-      currentState: null,
-      currentDate: null,
       response: null,
       loading: null,
+      history: null,
+      selectedHistoryItem: null,
     };
+  },
+  async created() {
+    this.statement = store.getters['getStatement'];
+    this.statementdate = store.getters['getDate'];
+    this.response = store.getters['getInferenceResult'];
+    this.history = store.getters['getHistory'];
+    console.log(this.history.length);
   },
   methods: {
     async predict() {
@@ -24,6 +33,7 @@ export default {
         statementdate: this.statementdate,
       }).then((resp) => (this.response = resp.data));
       store.dispatch('saveInferenceResult', this.response);
+      this.saveToHistory();
       this.loading = false;
     },
     fetchStatement() {
@@ -32,72 +42,135 @@ export default {
         statementdate: this.statementdate,
       });
     },
-    getState() {
-      this.currentState = this.$store.getters['getStatement'];
+    clearInputs() {
+      this.statementdate = '';
+      this.statement = '';
+      this.response = null;
+      store.dispatch('fetchStatement', {
+        statement: this.statement,
+        statementdate: this.statementdate,
+      });
+      store.dispatch('saveInferenceResult', this.response);
     },
-    getDate() {
-      this.currentDate = this.$store.getters['getDate'];
+    saveToHistory() {
+      store.dispatch('saveHistory', {
+        statement: this.statement,
+        statementdate: this.statementdate,
+        results: this.response,
+      });
     },
-    getResponse() {},
+    setHistoryData(item) {
+      this.statement = item.statement;
+      this.statementdate = item.statementdate;
+      this.response = item.results;
+    },
   },
 };
 </script>
 
 <template>
-  <div id="InputUser">
+  <div id='InputUser'>
     <v-main>
       <v-container>
-        <div class="d-flex justify-space-around">
-          <v-col cols="6">
+        <div class='d-flex justify-space-around'>
+          <v-col cols='6'>
             <v-textarea
-              name="input-7-1"
-              label="Enter your Fact"
+              name='input-7-1'
+              label='Enter your Fact'
               auto-grow
-              placeholder="Donald Trump is the president of France"
+              placeholder='Donald Trump is the president of France'
               clearable
-              style="width: 500px"
+              style='width: 500px'
               outlined
               required
-              v-model="statement"
+              v-model='statement'
             ></v-textarea>
             <v-textarea
-              name="input-2-1"
-              label="Enter statement date"
-              placeholder="2020-05-12"
+              name='input-2-1'
+              label='Enter statement date'
+              placeholder='2020-05-12'
               clearable
               required
-              style="width: 500px"
+              style='width: 500px'
               outlined
-              v-model="statementdate"
+              v-model='statementdate'
             >
             </v-textarea>
-            <v-btn
-              v-if="this.statement && this.statementdate"
-              elevation="2"
-              x-large
-              color="primary"
-              @click="predict"
-            >
-              Check
-            </v-btn>
-            <v-btn v-else elevation="2" x-large color="primary" disabled
-              >Check</v-btn
-            >
+            <div v-if='this.statement && this.statementdate'>
+              <v-btn
+                elevation='2'
+                x-large
+                color='primary'
+                @click='predict(), fetchStatement()'
+              >
+                Check
+              </v-btn>
+              <v-btn
+                elevation='2' x-large color='grey lighten-2'
+                class='mx-2'
+                @click='clearInputs'
+              >Clear
+              </v-btn>
+            </div>
+            <div v-else>
+              <v-btn elevation='2' x-large color='primary' disabled
+              >Check
+              </v-btn
+              >
+              <v-btn
+                elevation='2' x-large color='grey lighten-2'
+                class='mx-2'
+                disabled
+              >Clear
+              </v-btn>
+            </div>
           </v-col>
-          <v-col cols="6" class="d-flex align-center justify-center">
-            <v-col v-if="!response && !loading" outlined cols="4"
-              >No checks yet</v-col
+          <v-col cols='6' class='d-flex align-center justify-center'>
+            <v-col v-if='!response && !loading' cols='4'
+            >No checks yet
+            </v-col
             >
-            <v-col v-else-if="loading" outlined cols="4">
-              <v-progress-linear
-                color="deep-purple accent-4"
+            <v-col v-else-if='loading' cols='4'>
+              <v-progress-circular
+                color='amber darken-4'
                 indeterminate
                 rounded
-                height="6"
-              ></v-progress-linear>
+                height='10'
+              ></v-progress-circular>
             </v-col>
-            <v-col v-else cols="4">{{ response.summary }}</v-col>
+            <div v-else>
+              <InferenceDashboard
+                :response='response'>
+              </InferenceDashboard>
+            </div>
           </v-col>
+          <v-menu v-if='history.length !== 0'
+                  bottom
+                  transition='slide-y-transition'
+                  offset-y>
+
+            <template v-slot:activator='{ on, attrs }'>
+              <v-btn
+                color='primary'
+                dark
+                v-bind='attrs'
+                v-on='on'
+              >
+                History
+              </v-btn>
+            </template>
+            <v-list-item-group color='white'>
+              <v-list-item
+                v-for='(item, index) in history'
+                :key='index'
+                v-model='selectedHistoryItem'
+                @click='setHistoryData(item)'
+              >
+                <v-list-item-title>{{ item.statement }}</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-menu>
+          <v-btn v-else disabled> History</v-btn>
         </div>
       </v-container>
     </v-main>
