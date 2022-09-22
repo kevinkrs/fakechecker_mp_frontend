@@ -1,9 +1,11 @@
 const mutations = {
-  setStatement(state, { statement, statementdate }) {
+  setStatement(state, { statement, statementdate, statementurl }) {
     console.log(statement);
     console.log(statementdate);
+    console.log(statementurl);
     state.statement = statement;
     state.statementdate = statementdate;
+    state.statementurl = statementurl;
   },
   saveInferenceResult(state, data) {
     state.result = data;

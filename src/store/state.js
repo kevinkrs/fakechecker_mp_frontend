@@ -1,7 +1,7 @@
 const state = {
   statement: null,
   statementdate: null,
-  url: null,
+  statementurl: null,
   author: null,
   response: null,
   history: [],
