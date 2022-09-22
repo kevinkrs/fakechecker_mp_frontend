@@ -18,10 +18,10 @@ export default {
     menu1: false,
     valid: true,
     urlRules: [
-      
+
       v => (v && v.length <= 256) || 'URL must be less than 256 characters', /* eslint-disable-next-line no-useless-escape*/
       v => /https?:[0-9]*\/\/[\w!?/\+\-_~=;\.,*&@#$%\(\)\'\[\]]+/.test(v) || 'URL must be valid',
-      
+
     ],
 
     statement: '',
@@ -46,7 +46,6 @@ export default {
       this.dateFormatted = this.formatDate(this.date);
     },
   },
-
 
 
   async created() {
@@ -116,141 +115,141 @@ export default {
     },
 
 
-
   },
 };
 </script>
 
 <template>
-  <div id="InputUser">
+  <div id='InputUser'>
     <v-main>
       <v-container>
-        <div class="d-flex justify-space-around">
-          <v-col cols="6">
-            <v-col cols="12" lg="6">
+        <div class='d-flex justify-space-around'>
+          <v-col cols='6'>
+            <v-col cols='12' lg='6'>
               <v-menu
-                ref="menu1"
-                v-model="menu1"
-                :close-on-content-click="false"
-                transition="scale-transition"
+                ref='menu1'
+                v-model='menu1'
+                :close-on-content-click='false'
+                transition='scale-transition'
                 offset-y
-                max-width="290px"
-                min-width="auto"
+                max-width='290px'
+                min-width='auto'
               >
-                <template v-slot:activator="{ on, attrs }">
+                <template v-slot:activator='{ on, attrs }'>
                   <v-text-field
-                    v-model="statementdate"
-                    label="Date"
-                    hint="MM/DD/YYYY"
+                    v-model='statementdate'
+                    label='Date'
+                    hint='MM/DD/YYYY'
                     persistent-hint
-                    prepend-icon="mdi-calendar"
-                    v-bind="attrs"
-                    @blur="date = parseDate(statementdate)"
-                    v-on="on"
+                    prepend-icon='mdi-calendar'
+                    v-bind='attrs'
+                    @blur='date = parseDate(statementdate)'
+                    v-on='on'
                   ></v-text-field>
                 </template>
                 <v-date-picker
-                  v-model="date"
+                  v-model='date'
                   no-title
-                  @input="menu1 = false"
+                  @input='menu1 = false'
                 ></v-date-picker>
               </v-menu>
             </v-col>
-            <v-text-field
-              name="input-7-1"
-              label="URL(optional)"
-              placeholder="www.facebook.com"
-              clearable
-              style="width: 500px"
-              height="40"
-              outlined
-              v-model="statementurl"
-              :rules ="urlRules"
-            ></v-text-field>
+
             <v-textarea
-              name="input-7-1"
-              label="Enter your Fact"
+              name='input-7-1'
+              label='Enter your Fact'
               auto-grow
-              placeholder="Donald Trump is the president of France"
+              placeholder='Donald Trump is the president of France'
               clearable
-              style="width: 500px"
+              style='width: 500px'
               outlined
               required
-              v-model="statement"
+              v-model='statement'
             ></v-textarea>
+            <v-text-field
+              name='input-7-1'
+              label='URL (optional)'
+              placeholder='www.facebook.com'
+              clearable
+              style='width: 500px'
+              height='40'
+              outlined
+              v-model='statementurl'
+              :rules='urlRules'
+            ></v-text-field>
 
-            <div v-if="this.statement && this.statementdate">
+            <div v-if='this.statement && this.statementdate'>
               <v-btn
-                elevation="2"
+                elevation='2'
                 x-large
-                color="primary"
-                @click="predict(), fetchStatement()"
+                color='primary'
+                @click='predict(), fetchStatement()'
               >
                 Check
               </v-btn>
               <v-btn
-                elevation="2"
+                elevation='2'
                 x-large
-                color="grey lighten-2"
-                class="mx-2"
-                @click="clearInputs"
-                >Clear
+                color='grey lighten-2'
+                class='mx-2'
+                @click='clearInputs'
+              >Clear
               </v-btn>
             </div>
             <div v-else>
-              <v-btn elevation="2" x-large color="primary" disabled
-                >Check
+              <v-btn elevation='2' x-large color='primary' disabled
+              >Check
               </v-btn>
               <v-btn
-                elevation="2"
+                elevation='2'
                 x-large
-                color="grey lighten-2"
-                class="mx-2"
+                color='grey lighten-2'
+                class='mx-2'
                 disabled
-                >Clear
+              >Clear
               </v-btn>
             </div>
           </v-col>
-          <v-col cols="6" class="d-flex align-center justify-center">
-            <v-col v-if="!response && !loading" cols="4">No checks yet </v-col>
-            <v-col v-else-if="loading" cols="4">
+          <v-col cols='6' class='d-flex align-center justify-center'>
+            <v-col v-if='!response && !loading' cols='4'>No checks yet</v-col>
+            <v-col v-else-if='loading' cols='4'>
               <v-progress-circular
-                color="amber darken-4"
+                color='amber darken-4'
                 indeterminate
                 rounded
-                height="10"
+                height='10'
               ></v-progress-circular>
             </v-col>
             <div v-else>
-              <InferenceDashboard :response="response"> </InferenceDashboard>
+              <InferenceDashboard :response='response'></InferenceDashboard>
             </div>
           </v-col>
           <v-menu
-            v-if="history.length !== 0"
+            v-if='history.length !== 0'
             bottom
-            transition="slide-y-transition"
+            transition='slide-y-transition'
             offset-y
           >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+            <template v-slot:activator='{ on, attrs }'>
+              <v-btn color='primary' dark v-bind='attrs' v-on='on'>
                 History
               </v-btn>
             </template>
-            <v-list-item-group color="white">
+            <v-list-item-group color='white'>
               <v-list-item
-                v-for="(item, index) in history"
-                :key="index"
-                v-model="selectedHistoryItem"
-                @click="setHistoryData(item)"
+                v-for='(item, index) in history'
+                :key='index'
+                v-model='selectedHistoryItem'
+                @click='setHistoryData(item)'
               >
                 <v-list-item-icon>
                   <v-list-item-title
-                    v-text="item.results.prob_max.toFixed(2)"
+                    v-text='item.results.prob_max.toFixed(2)'
                   ></v-list-item-title>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title
-                    v-text="`${item.statement.substring(0, 10)}...`"
+                    v-text='`${item.statement.substring(0, 10)}...`'
                   ></v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
