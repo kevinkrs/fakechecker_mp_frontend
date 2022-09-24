@@ -1,10 +1,10 @@
 <script>
 import { getPrediction } from '@/api';
-import store from '@/store/index';
+import store from '@/store';
 import InferenceDashboard from '@/components/InferenceDashboard';
-
+/* eslint-disable */
 export default {
-  name: 'InputUser',
+  name: 'FactChecker',
   components: { InferenceDashboard },
   data: (vm) => ({
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
@@ -121,7 +121,7 @@ export default {
 
 <template>
   <div id='InputUser'>
-    <v-main>
+    <v-main class='p-0'>
       <v-container>
         <div class='d-flex justify-space-around'>
           <v-col cols='6'>
