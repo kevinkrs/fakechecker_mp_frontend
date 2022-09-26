@@ -19,15 +19,22 @@ export default {
     valid: true,
     urlRules: [
 
-      v => (v && v.length <= 256) || 'URL must be less than 256 characters', /* eslint-disable-next-line no-useless-escape*/
-      v => /https?:[0-9]*\/\/[\w!?/\+\-_~=;\.,*&@#$%\(\)\'\[\]]+/.test(v) || 'URL must be valid',
+      /* eslint-disable-next-line no-useless-escape*/
+      v => (!v || /https?:[0-9]*\/\/[\w!?/\+\-_~=;\.,*&@#$%\(\)\'\[\]]+/.test(v)) || 'URL must be valid',
+
+    ],
+
+    nameRules: [
+
+      /* eslint-disable-next-line no-useless-escape*/
+      v => (!v || /^[a-z ,.'-]+$/i.test(v)) || 'Name must be valid',
 
     ],
 
     statement: '',
     statementdate: '',
     statementurl: '',
-    author: '',
+    statementauthor: '',
     response: null,
     loading: null,
     history: null,
@@ -52,6 +59,7 @@ export default {
     this.statement = store.getters['getStatement'];
     this.statementdate = store.getters['getDate'];
     this.statementurl = store.getters['getUrl'];
+    this.statementauthor = store.getters['getAuthor'];
     this.response = store.getters['getInferenceResult'];
     this.history = store.getters['getHistory'];
     console.log(this.history.length);
@@ -63,6 +71,7 @@ export default {
         statement: this.statement,
         statementdate: this.statementdate,
         statementurl: this.statementurl,
+        statementauthor: this.statementauthor,
       }).then((resp) => (this.response = resp.data));
       store.dispatch('saveInferenceResult', this.response);
       this.saveToHistory();
@@ -73,17 +82,20 @@ export default {
         statement: this.statement,
         statementdate: this.statementdate,
         statementurl: this.statementurl,
+        statementauthor: this.statementauthor,
       });
     },
     clearInputs() {
       this.statementdate = '';
       this.statement = '';
       this.statementurl = '';
+      this.statementauthor = '';
       this.response = null;
       store.dispatch('fetchStatement', {
         statement: this.statement,
         statementdate: this.statementdate,
         statementurl: this.statementurl,
+        statementauthor: this.statementauthor,
       });
       store.dispatch('saveInferenceResult', this.response);
     },
@@ -92,6 +104,7 @@ export default {
         statement: this.statement,
         statementdate: this.statementdate,
         statementurl: this.statementurl,
+        statementauthor: this.statementauthor,
         results: this.response,
       });
     },
@@ -99,6 +112,7 @@ export default {
       this.statement = item.statement;
       this.statementdate = item.statementdate;
       this.statementurl = item.statementurl;
+      this.statementauthor = item.statementauthor;
       this.response = item.results;
     },
     formatDate(date) {
@@ -137,14 +151,15 @@ export default {
               >
                 <template v-slot:activator='{ on, attrs }'>
                   <v-text-field
-                    v-model='statementdate'
+                    v-model='computedDateFormatted'
                     label='Date'
                     hint='MM/DD/YYYY'
                     persistent-hint
                     prepend-icon='mdi-calendar'
                     v-bind='attrs'
-                    @blur='date = parseDate(statementdate)'
+                    @blur='date = parseDate(computedDateFormatted)'
                     v-on='on'
+                    readonly
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -176,6 +191,17 @@ export default {
               outlined
               v-model='statementurl'
               :rules='urlRules'
+            ></v-text-field>
+            <v-text-field
+              name='input-7-1'
+              label='Author (optional)'
+              placeholder='James James'
+              clearable
+              style='width: 500px'
+              height='40'
+              outlined
+              v-model='statementauthor'
+              :rules='nameRules'
             ></v-text-field>
 
             <div v-if='this.statement && this.statementdate'>

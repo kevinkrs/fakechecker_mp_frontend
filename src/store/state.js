@@ -2,7 +2,7 @@ const state = {
   statement: null,
   statementdate: null,
   statementurl: null,
-  author: null,
+  statementauthor: null,
   response: null,
   history: [],
 };
