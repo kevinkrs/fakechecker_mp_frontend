@@ -1,4 +1,7 @@
 <script>
+import store from '@/store';
+import postUserHistory from '@/api';
+
 export default {
   name: 'MenuHeader',
   data() {
@@ -10,6 +13,12 @@ export default {
         { title: 'Contact', icon: 'mdi-account-box', to: '/contact' },
       ],
     };
+  },
+  methods: {
+    donateHistory() {
+      const history = store.getters['getHistory'];
+      postUserHistory(history);
+    },
   },
 };
 </script>
@@ -74,6 +83,17 @@ export default {
       <v-toolbar-title>Cool name we have to come up with</v-toolbar-title>
 
       <v-spacer></v-spacer>
+      <v-tooltip bottom>
+        <template v-slot:activator='{on, attrs}'>
+          <v-btn v-bind='attrs'
+                 v-on='on'
+                 @click='donateHisory'>
+            <v-icon>mdi-heart</v-icon>
+            Contribute
+          </v-btn>
+        </template>
+        <span>Donate your history and predictions for our model development!</span>
+      </v-tooltip>
 
       <!--      <v-btn icon>
               <v-icon>mdi-magnify</v-icon>

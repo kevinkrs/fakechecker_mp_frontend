@@ -17,3 +17,9 @@ export function getPrediction({ statement, statementdate, statementurl, author }
 export function getNews() {
   return axios.get('/news');
 }
+
+export function postUserHistory(history) {
+  return axios.post('/training', {
+    input: history,
+  });
+}
