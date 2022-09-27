@@ -76,8 +76,9 @@ export default {
       this.loading = true;
       await getPrediction({
         statement: this.statement,
-        statementdate: this.statementdate,
+        statementdate: this.statementdate.substring(0, 9),
         statementurl: this.statementurl,
+        author: this.author,
       }).then((resp) => (this.response = resp.data));
       store.dispatch('saveInferenceResult', this.response);
       this.saveToHistory();
@@ -88,6 +89,7 @@ export default {
         statement: this.statement,
         statementdate: this.statementdate,
         statementurl: this.statementurl,
+        author: this.author,
       });
     },
     clearInputs() {
@@ -237,7 +239,11 @@ export default {
           </div>
         </v-col>
         <v-col md='5' sm='12' class='d-flex align-center justify-center'>
-          <v-col v-if='!response && !loading' cols='5'>No checks yet</v-col>
+
+          <v-col v-if='!response && !loading' cols='5'>
+            <v-icon>mdi-smiley-cry-outline</v-icon>
+            No checks yet
+          </v-col>
           <v-col v-else-if='loading' cols='4'>
             <v-progress-circular
               color='amber darken-4'
