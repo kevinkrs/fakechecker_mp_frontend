@@ -87,7 +87,9 @@ export default {
         <template v-slot:activator='{on, attrs}'>
           <v-btn v-bind='attrs'
                  v-on='on'
-                 @click='donateHisory'>
+                 disabled
+                 @click='donateHistory'
+                 class='d-flex align-center'>
             <v-icon>mdi-heart</v-icon>
             Contribute
           </v-btn>
