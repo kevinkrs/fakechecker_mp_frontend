@@ -8,6 +8,9 @@ const getters = {
   getUrl(state) {
     return state.statementurl;
   },
+  getAuthor(state) {
+    return state.author;
+  },
   getInferenceResult(state) {
     return state.result;
   },
@@ -16,6 +19,9 @@ const getters = {
   },
   getNews(state) {
     return state.news;
+  },
+  getCheckerInput(state) {
+    return state.checkerInput;
   },
 };
 

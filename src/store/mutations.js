@@ -16,6 +16,9 @@ const mutations = {
   saveToNews(state, data) {
     state.news = data;
   },
+  saveForChecker(state, data) {
+    state.checkerInput = data;
+  },
 };
 
 export default mutations;

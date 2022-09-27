@@ -11,6 +11,9 @@ const actions = {
   saveNews({ commit }, payload) {
     commit('saveToNews', payload);
   },
+  fetchForChecker({ commit }, payload) {
+    commit('saveForChecker', payload);
+  },
 };
 
 export default actions;

@@ -47,13 +47,22 @@ export default {
     },
   },
 
-
   async created() {
-    this.statement = store.getters['getStatement'];
-    this.statementdate = store.getters['getDate'];
-    this.statementurl = store.getters['getUrl'];
     this.response = store.getters['getInferenceResult'];
     this.history = store.getters['getHistory'];
+    const fromNews = store.getters['getCheckerInput'];
+    if (fromNews) {
+      this.statement = fromNews.description;
+      this.statementdate = fromNews.publishedAt;
+      this.statementurl = fromNews.url;
+      this.author = fromNews.author;
+    } else {
+      this.statement = store.getters['getStatement'];
+      this.statementdate = store.getters['getDate'];
+      this.statementurl = store.getters['getUrl'];
+      this.author = store.getters['getAuthor'];
+
+    }
   },
   methods: {
     async predict() {
@@ -123,6 +132,17 @@ export default {
     <v-container>
       <div class='d-flex justify-space-around'>
         <v-col cols='6'>
+          <v-textarea
+            name='input-7-1'
+            label='Enter your Fact'
+            auto-grow
+            placeholder='Donald Trump is the president of France'
+            clearable
+            style='width: 500px'
+            outlined
+            required
+            v-model='statement'
+          ></v-textarea>
           <v-col cols='12' lg='6'>
             <v-menu
               ref='menu1'
@@ -135,7 +155,7 @@ export default {
             >
               <template v-slot:activator='{ on, attrs }'>
                 <v-text-field
-                  v-model='statementdate'
+                  v-model='computedDateFormatted'
                   label='Date'
                   hint='MM/DD/YYYY'
                   persistent-hint
@@ -152,18 +172,6 @@ export default {
               ></v-date-picker>
             </v-menu>
           </v-col>
-
-          <v-textarea
-            name='input-7-1'
-            label='Enter your Fact'
-            auto-grow
-            placeholder='Donald Trump is the president of France'
-            clearable
-            style='width: 500px'
-            outlined
-            required
-            v-model='statement'
-          ></v-textarea>
           <v-text-field
             name='input-7-1'
             label='URL (optional)'

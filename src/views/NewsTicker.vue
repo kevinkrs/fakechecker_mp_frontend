@@ -54,6 +54,10 @@ export default {
       store.dispatch('saveNews', this.news);
       this.loading = false;
     },
+    saveForChecker(article) {
+      console.log(article);
+      store.dispatch('fetchForChecker', article);
+    },
   },
 };
 </script>
@@ -86,7 +90,7 @@ export default {
     </div>
     <div v-else>
       <v-card tile max-width='600' class='mx-auto my-4' v-for='article in this.news' :key='article.id'>
-        <v-list-item three-line>
+        <v-list-item three-line @click='saveForChecker(article)'>
           <v-list-item-content>
             <v-list-item-title v-text='article.title' class='mb-4 mt-2'></v-list-item-title>
             <div class='d-flex flex-row'>

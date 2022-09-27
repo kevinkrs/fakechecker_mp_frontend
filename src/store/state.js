@@ -6,6 +6,7 @@ const state = {
   response: null,
   history: [],
   news: null,
+  checkerInput: null,
 };
 
 export default state;
