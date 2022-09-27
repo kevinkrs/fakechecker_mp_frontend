@@ -48,7 +48,6 @@ export default {
   },
 
   async created() {
-    this.response = store.getters['getInferenceResult'];
     this.history = store.getters['getHistory'];
     const fromNews = store.getters['getCheckerInput'];
     if (fromNews) {
@@ -61,6 +60,7 @@ export default {
       this.statementdate = store.getters['getDate'];
       this.statementurl = store.getters['getUrl'];
       this.author = store.getters['getAuthor'];
+      this.response = store.getters['getInferenceResult'];
 
     }
   },
@@ -87,7 +87,8 @@ export default {
       this.statementdate = '';
       this.statement = '';
       this.statementurl = '';
-      this.response = null;
+      this.author = '',
+        this.response = null;
       store.dispatch('fetchStatement', {
         statement: this.statement,
         statementdate: this.statementdate,
@@ -121,8 +122,6 @@ export default {
       const [month, day, year] = date.split('/');
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
-
-
   },
 };
 </script>
@@ -177,11 +176,22 @@ export default {
             label='URL (optional)'
             placeholder='www.facebook.com'
             clearable
+            class='mt-4'
             style='width: 500px'
             height='40'
             outlined
             v-model='statementurl'
             :rules='urlRules'
+          ></v-text-field>
+          <v-text-field
+            name='input-7-1'
+            label='Author (optional)'
+            placeholder='The Guardian/ James Patternman'
+            clearable
+            style='width: 300px'
+            height='40'
+            outlined
+            v-model='author'
           ></v-text-field>
 
           <div v-if='this.statement && this.statementdate'>
@@ -217,7 +227,7 @@ export default {
           </div>
         </v-col>
         <v-col md='5' sm='12' class='d-flex align-center justify-center'>
-          <v-col v-if='!response && !loading' cols='4'>No checks yet</v-col>
+          <v-col v-if='!response && !loading' cols='5'>No checks yet</v-col>
           <v-col v-else-if='loading' cols='4'>
             <v-progress-circular
               color='amber darken-4'

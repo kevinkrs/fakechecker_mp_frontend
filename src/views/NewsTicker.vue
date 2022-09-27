@@ -19,6 +19,8 @@ export default {
         { name: 'China', iso: 'cn' },
         { name: 'Russia', iso: 'ru' },
       ],
+      snackbar: false,
+      text: 'News where successfully copied to checker!',
     };
   },
   computed: {
@@ -29,13 +31,15 @@ export default {
   },
   async created() {
     this.news = store.getters['getNews'];
-    this.loading = true;
-    await axios.get('https://newsapi.org/v2/top-headlines?country=gb&apiKey=3e03a786a0b24618b5f0839d08ec69e0')
-      .then((resp) =>
-        (this.news = resp.data.articles),
-      );
-    store.dispatch('saveNews', this.news);
-    this.loading = false;
+    if (!this.news) {
+      this.loading = true;
+      await axios.get('https://newsapi.org/v2/top-headlines?country=gb&apiKey=3e03a786a0b24618b5f0839d08ec69e0')
+        .then((resp) =>
+          (this.news = resp.data.articles),
+        );
+      store.dispatch('saveNews', this.news);
+      this.loading = false;
+    }
 
   },
   methods: {
@@ -57,6 +61,9 @@ export default {
     saveForChecker(article) {
       console.log(article);
       store.dispatch('fetchForChecker', article);
+    },
+    openSnackbar() {
+      this.snackbar = true;
     },
   },
 };
@@ -90,13 +97,14 @@ export default {
     </div>
     <div v-else>
       <v-card tile max-width='600' class='mx-auto my-4' v-for='article in this.news' :key='article.id'>
-        <v-list-item three-line @click='saveForChecker(article)'>
+        <v-list-item three-line @click='saveForChecker(article); snackbar=true'>
           <v-list-item-content>
             <v-list-item-title v-text='article.title' class='mb-4 mt-2'></v-list-item-title>
             <div class='d-flex flex-row'>
               <v-icon>mdi-newspaper-variant-multiple</v-icon>
-              <v-list-item-subtitle v-text='article.description'
-                                    class='ml-2 d-flex align-center'></v-list-item-subtitle>
+              <v-list-item-subtitle class='ml-2 d-flex align-center'>
+                {{ article.description ? article.description : article.content }}
+              </v-list-item-subtitle>
             </div>
             <div class='d-flex flex-row mt-2'>
               <v-icon>mdi-web-check</v-icon>
@@ -108,10 +116,32 @@ export default {
             </div>
           </v-list-item-content>
         </v-list-item>
-
       </v-card>
     </div>
-  </div>
+    <v-snackbar
+      v-model='snackbar'
+    >
+      {{ text }}
 
+      <template v-slot:action='{ attrs }'>
+        <v-btn
+          color='pink'
+          text
+          v-bind='attrs'
+          @click='snackbar = false'
+        >
+          Close
+        </v-btn>
+        <router-link to='/' class='text-decoration-none'>
+          <v-btn color='blue'
+                 text
+                 v-bind='attrs'
+                 @click='snackbar = false'>
+            Open checker
+          </v-btn>
+        </router-link>
+      </template>
+    </v-snackbar>
+  </div>
 </template>
 
