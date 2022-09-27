@@ -54,7 +54,6 @@ export default {
     this.statementurl = store.getters['getUrl'];
     this.response = store.getters['getInferenceResult'];
     this.history = store.getters['getHistory'];
-    console.log(this.history.length);
   },
   methods: {
     async predict() {
@@ -121,7 +120,6 @@ export default {
 
 <template>
   <div id='InputUser'>
-
     <v-container>
       <div class='d-flex justify-space-around'>
         <v-col cols='6'>
@@ -210,7 +208,7 @@ export default {
             </v-btn>
           </div>
         </v-col>
-        <v-col cols='6' class='d-flex align-center justify-center'>
+        <v-col md='5' sm='12' class='d-flex align-center justify-center'>
           <v-col v-if='!response && !loading' cols='4'>No checks yet</v-col>
           <v-col v-else-if='loading' cols='4'>
             <v-progress-circular
@@ -255,7 +253,7 @@ export default {
             </v-list-item>
           </v-list-item-group>
         </v-menu>
-        <v-btn v-else disabled> History</v-btn>
+        <v-btn v-else disabled>History</v-btn>
       </div>
     </v-container>
   </div>

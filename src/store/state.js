@@ -5,6 +5,7 @@ const state = {
   author: null,
   response: null,
   history: [],
+  news: null,
 };
 
 export default state;

@@ -14,6 +14,9 @@ const getters = {
   getHistory(state) {
     return state.history;
   },
+  getNews(state) {
+    return state.news;
+  },
 };
 
 export default getters;

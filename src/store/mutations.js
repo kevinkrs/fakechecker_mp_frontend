@@ -13,6 +13,9 @@ const mutations = {
   saveToHistory(state, data) {
     state.history.push(data);
   },
+  saveToNews(state, data) {
+    state.news = data;
+  },
 };
 
 export default mutations;

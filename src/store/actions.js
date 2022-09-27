@@ -8,6 +8,9 @@ const actions = {
   saveHistory({ commit }, payload) {
     commit('saveToHistory', payload);
   },
+  saveNews({ commit }, payload) {
+    commit('saveToNews', payload);
+  },
 };
 
 export default actions;

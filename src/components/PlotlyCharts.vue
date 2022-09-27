@@ -4,7 +4,7 @@ import { Plotly } from 'vue-plotly';
 export default {
   name: 'PlotlyCharts',
   props: {
-    data: { type: Object, required: true, default: null },
+    data: { type: Array, required: true, default: null },
     layout: { type: Object, required: true, default: null },
   },
   components: {
