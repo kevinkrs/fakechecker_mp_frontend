@@ -264,7 +264,32 @@ export default {
             ></v-progress-circular>
           </v-col>
           <div v-else>
-            <InferenceDashboard :response='response'></InferenceDashboard>
+            <div>
+              <InferenceDashboard :response='response'></InferenceDashboard>
+            </div>
+            <div>
+              <h3>Similar Items</h3>
+              <v-card v-for='(item, idx) in similarNews' :key='idx'>
+                <v-list-item three-line>
+                  <v-list-item-content>
+                    <v-list-item-title v-text='item.title' class='mb-4 mt-2'></v-list-item-title>
+                    <div class='d-flex flex-row'>
+                      <v-icon>mdi-newspaper-variant-multiple</v-icon>
+                      <v-list-item-subtitle v-text='item.statementdate' class='ml-2 d-flex align-center'>
+                      </v-list-item-subtitle>
+                    </div>
+                    <div class='d-flex flex-row mt-2'>
+                      <v-icon>mdi-web-check</v-icon>
+                      <v-list-item-subtitle v-text='item.label'
+                                            class='ml-2 d-flex align-center'></v-list-item-subtitle>
+                      <v-btn icon :href='item.url' target='_blank'>
+                        <v-icon>mdi-open-in-new</v-icon>
+                      </v-btn>
+                    </div>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-card>
+            </div>
           </div>
         </v-col>
         <v-menu

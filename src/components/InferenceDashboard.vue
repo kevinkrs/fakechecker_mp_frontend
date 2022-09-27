@@ -21,8 +21,8 @@ export default {
           },
         }],
         layout: {
-          height: 300,
-          width: 400,
+          height: 200,
+          width: 300,
           margin: {
             l: 40,
             b: 20,
