@@ -24,6 +24,13 @@ export default {
 
     ],
 
+    nameRules: [
+
+      /* eslint-disable-next-line no-useless-escape*/
+      v => (!v || /^[a-z ,.'-]+$/i.test(v)) || 'Name must be valid',
+
+    ],
+
     statement: '',
     statementdate: '',
     statementurl: '',
@@ -101,6 +108,7 @@ export default {
         statement: this.statement,
         statementdate: this.statementdate,
         statementurl: this.statementurl,
+        author: this.author,
         results: this.response,
       });
     },
@@ -108,6 +116,7 @@ export default {
       this.statement = item.statement;
       this.statementdate = item.statementdate;
       this.statementurl = item.statementurl;
+      this.author = item.author;
       this.response = item.results;
     },
     formatDate(date) {
@@ -192,6 +201,7 @@ export default {
             height='40'
             outlined
             v-model='author'
+            :rules='nameRules'
           ></v-text-field>
 
           <div v-if='this.statement && this.statementdate'>
