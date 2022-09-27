@@ -7,6 +7,7 @@ const state = {
   history: [],
   news: null,
   checkerInput: null,
+  similarNews: null,
 };
 
 export default state;

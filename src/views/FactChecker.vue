@@ -1,5 +1,5 @@
 <script>
-import { getPrediction } from '@/api';
+import { getPrediction, getSimilarNews } from '@/api';
 import store from '@/store';
 import InferenceDashboard from '@/components/InferenceDashboard';
 /* eslint-disable */
@@ -39,6 +39,7 @@ export default {
     loading: null,
     history: null,
     selectedHistoryItem: null,
+    similarNews: null,
   }),
 
   computed: {
@@ -68,6 +69,7 @@ export default {
       this.statementurl = store.getters['getUrl'];
       this.author = store.getters['getAuthor'];
       this.response = store.getters['getInferenceResult'];
+      this.similarNews = store.getters['getSimilarStatements'];
 
     }
   },
@@ -81,6 +83,15 @@ export default {
         author: this.author,
       }).then((resp) => (this.response = resp.data));
       store.dispatch('saveInferenceResult', this.response);
+
+      await getSimilarNews({
+        statement: this.statement,
+        statementdate: this.statementdate.substring(0, 9),
+        statementurl: this.statementurl,
+        author: this.author,
+      }).then((resp) => (this.similarNews = resp.data));
+      store.dispatch('saveSimilarNews', this.similarNews);
+
       this.saveToHistory();
       this.loading = false;
     },

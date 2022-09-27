@@ -14,6 +14,15 @@ export function getPrediction({ statement, statementdate, statementurl, author }
   });
 }
 
+export function getSimilarNews({ statement, statementdate, statementurl, author }) {
+  return axios.post(`/search`, {
+    text: statement,
+    statementdate: statementdate,
+    source: statementurl,
+    author: author,
+  });
+}
+
 export function getNews() {
   return axios.get('/news');
 }

@@ -5,6 +5,9 @@ const actions = {
   saveInferenceResult({ commit }, payload) {
     commit('saveInferenceResult', payload);
   },
+  saveSimilarNews({ commit }, payload) {
+    commit('saveSimilarNews', payload);
+  },
   saveHistory({ commit }, payload) {
     commit('saveToHistory', payload);
   },

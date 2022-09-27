@@ -11,6 +11,9 @@ const mutations = {
   saveInferenceResult(state, data) {
     state.result = data;
   },
+  saveSimilarNews(state, data) {
+    state.similarNews = data;
+  },
   saveToHistory(state, data) {
     state.history.push(data);
   },

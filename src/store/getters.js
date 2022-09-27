@@ -23,6 +23,9 @@ const getters = {
   getCheckerInput(state) {
     return state.checkerInput;
   },
+  getSimilarNews(state) {
+    return state.similarNews;
+  },
 };
 
 export default getters;
