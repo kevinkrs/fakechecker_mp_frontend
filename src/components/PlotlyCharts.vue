@@ -1,5 +1,5 @@
 <script>
-import { PlotlyChart } from 'vue-plotly';
+import { Plotly } from 'vue-plotly';
 
 export default {
   name: 'PlotlyCharts',
@@ -8,11 +8,11 @@ export default {
     layout: { type: Object, required: true, default: null },
   },
   components: {
-    PlotlyChart,
+    Plotly,
   },
 };
 </script>
 
 <template>
-  <PlotlyChart :data='data' , :layout='layout'></PlotlyChart>
+  <Plotly :data='data' :layout='layout'></Plotly>
 </template>

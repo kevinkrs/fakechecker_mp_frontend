@@ -16,7 +16,7 @@ export default {
 
 <template>
   <v-app>
-    <v-main>
+    <v-main class='px-16'>
       <MenuHeader />
     </v-main>
   </v-app>
