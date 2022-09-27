@@ -44,9 +44,10 @@ export default {
       await getNews().then((resp) => (this.news = resp.data));
       this.loading = false;
     },
-    async selectTopic(iso) {
+    async selectTopic(country) {
       this.loading = true;
-      await axios.get(`https://newsapi.org/v2/top-headlines?country=${iso}&apiKey=3e03a786a0b24618b5f0839d08ec69e0`)
+      this.selectedCountry = country.name;
+      await axios.get(`https://newsapi.org/v2/top-headlines?country=${country.iso}&apiKey=3e03a786a0b24618b5f0839d08ec69e0`)
         .then((resp) =>
           (this.news = resp.data.articles),
         );
@@ -70,7 +71,7 @@ export default {
           </v-btn>
         </template>
         <div v-for='(country, idx) in countries' :key='idx'>
-          <v-list-item @click='selectTopic(country.iso)'> {{ country.name }}
+          <v-list-item @click='selectTopic(country)'> {{ country.name }}
           </v-list-item>
         </div>
       </v-menu>
