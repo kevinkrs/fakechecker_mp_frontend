@@ -15,8 +15,8 @@ It is pretty straight forward
 
 ## UI
 
-[Checker](public/checker.png)
-[News Ticker](public/news.png)
+![Checker](public/checker.png){width=50%}
+![News Ticker](public/news.png){width=50%}
 
 ## Frontend API documentation
 
