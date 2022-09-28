@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="@">
+    <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="docu">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +76,7 @@
       <workItem from="1663849177736" duration="1637000" />
       <workItem from="1664017084698" duration="17695000" />
       <workItem from="1664276698025" duration="26767000" />
-      <workItem from="1664396292962" duration="7057000" />
+      <workItem from="1664396292962" duration="7188000" />
     </task>
     <task id="LOCAL-00001" summary="Modified history menu">
       <created>1663445219732</created>
@@ -85,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663445219732</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="docu">
+      <created>1664403429088</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664403429088</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +111,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Modified history menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified history menu" />
+    <MESSAGE value="docu" />
+    <option name="LAST_COMMIT_MESSAGE" value="docu" />
   </component>
 </project>
