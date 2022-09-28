@@ -1,26 +1,23 @@
-<template>
-  <v-app>
-    <v-main>
-      <HeaderHome />
-      <InputUser />
-    </v-main>
-  </v-app>
-</template>
-
 <script>
-import HeaderHome from './components/HeaderHome';
-import InputUser from './components/InputUser';
+import MenuHeader from '@/components/MenuHeader';
 
 export default {
   name: 'App',
 
   components: {
-    HeaderHome,
-    InputUser,
+    MenuHeader,
   },
 
   data: () => ({
-    //
+    //test
   }),
 };
 </script>
+
+<template>
+  <v-app>
+    <v-main class='pa-10'>
+      <MenuHeader />
+    </v-main>
+  </v-app>
+</template>
