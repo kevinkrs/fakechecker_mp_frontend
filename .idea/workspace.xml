@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="docu">
+      <change afterPath="$PROJECT_DIR$/public/checker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/news.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +79,7 @@
       <workItem from="1663849177736" duration="1637000" />
       <workItem from="1664017084698" duration="17695000" />
       <workItem from="1664276698025" duration="26767000" />
-      <workItem from="1664396292962" duration="8033000" />
+      <workItem from="1664396292962" duration="8467000" />
     </task>
     <task id="LOCAL-00001" summary="Modified history menu">
       <created>1663445219732</created>
