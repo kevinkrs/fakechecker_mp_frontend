@@ -13,11 +13,6 @@ It is pretty straight forward
 
 2. Start server with ```npm run serve```
 
-## UI
-
-![Checker](public/checker.png){width=50%}
-![News Ticker](public/news.png){width=50%}
-
 ## Frontend API documentation
 
 - [FactChecker](website/components/FactChecker.md)
@@ -25,3 +20,8 @@ It is pretty straight forward
 - [NewsTicker](website/components/NewsTicker.md)
 - [MenuHeader](website/components/MenuHeader.md)
 - [PlotlyChart](website/components/PlotlyChart.md)
+
+## UI
+
+![Checker](public/checker.png)
+![News Ticker](public/news.png)
