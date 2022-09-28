@@ -43,6 +43,8 @@ export default {
   }),
 
   computed: {
+    // @vuese
+    // Main function to transform user input date from the date-picker into correct form
     computedDateFormatted() {
       return this.formatDate(this.date);
     },
@@ -55,6 +57,8 @@ export default {
     },
   },
 
+  // @vuese
+  // Loading all available data on component create. Automatically fills where user left.
   async created() {
     this.history = store.getters['getHistory'];
     const fromNews = store.getters['getCheckerInput'];
@@ -74,6 +78,9 @@ export default {
     }
   },
   methods: {
+    // @vuese
+    // Main function to predict as well as to get similar news from backend. Starts the two transformer models and returns
+    // the prediction as well as similar database entries.
     async predict() {
       this.loading = true;
       await getPrediction({
@@ -95,6 +102,7 @@ export default {
       this.saveToHistory();
       this.loading = false;
     },
+    // @vuese Saves current user input to state. Persists state after reloading.
     fetchStatement() {
       store.dispatch('fetchStatement', {
         statement: this.statement,
@@ -103,6 +111,7 @@ export default {
         author: this.author,
       });
     },
+    // @vuese Cleans user inputs.
     clearInputs() {
       this.statementdate = '';
       this.statement = '';
@@ -116,6 +125,7 @@ export default {
       });
       store.dispatch('saveInferenceResult', this.response);
     },
+    // @vuese Pushes current user fact check to history object in state.
     saveToHistory() {
       store.dispatch('saveHistory', {
         statement: this.statement,

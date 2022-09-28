@@ -2,6 +2,8 @@
 import PlotlyCharts from '@/components/PlotlyCharts';
 
 export default {
+  // @vuese
+  // Plotly dashboard for inference.
   name: 'InferenceDashboard',
   props: {
     response: { type: Array, required: true, default: null },
