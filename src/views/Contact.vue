@@ -8,7 +8,7 @@ export default {
       name: '',
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => (v && v.length <= 20) || 'Name must be less than 20 characters',
       ],
       email: '',
       emailRules: [
@@ -18,7 +18,7 @@ export default {
       message: '',
       messageRules: [
         v => !!v || 'Message is required',
-        v => (v && v.length >= 10) || 'Message must be less more than 5 characters',
+        v => (v && v.length >= 5) || 'Message must be more than 5 characters',
       ],
     }),
 
@@ -36,10 +36,8 @@ export default {
 <template>
   <v-content>
     <div class="contact">
-      <h1>Contact Us</h1>
-    </div>
-    <div class="block">
       <v-container>
+        <h1>Contact Us</h1>
         <v-form
           ref="form"
           v-model="valid"
@@ -47,7 +45,7 @@ export default {
         >
           <v-text-field
             v-model="name"
-            :counter="10"
+            :counter="20"
             :rules="nameRules"
             label="Name"
             required
