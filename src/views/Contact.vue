@@ -29,6 +29,14 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
+    saveToStore() {
+      const contactData = {
+        name: this.name,
+        email: this.email,
+        message: this.message,
+      };
+      store.dispatch['fetchContact'];
+    },
   },
 };
 </script>
@@ -68,7 +76,7 @@ export default {
           <v-btn
             :disabled='!valid'
             class='mr-4'
-            @click='submit'
+            @click='saveToStore'
           >
             Submit
           </v-btn>

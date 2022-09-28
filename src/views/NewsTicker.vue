@@ -1,5 +1,4 @@
 <script>
-import { getNews } from '@/api';
 import axios from 'axios';
 import store from '@/store';
 
@@ -23,13 +22,10 @@ export default {
       text: 'News where successfully copied to checker!',
     };
   },
-  computed: {
-    /*news() {
-      const news = store.getters['getNews'];
-      return news;
-    },*/
-  },
+  computed: {},
   async created() {
+    // @vuese
+    // Main API call to get news, utilizing newsapi.org.
     this.news = store.getters['getNews'];
     if (!this.news) {
       this.loading = true;
@@ -43,11 +39,8 @@ export default {
 
   },
   methods: {
-    async fetchNews() {
-      this.loading = true;
-      await getNews().then((resp) => (this.news = resp.data));
-      this.loading = false;
-    },
+    // @vuese
+    // Enables user to select the news source country.
     async selectTopic(country) {
       this.loading = true;
       this.selectedCountry = country.name;
@@ -58,6 +51,8 @@ export default {
       store.dispatch('saveNews', this.news);
       this.loading = false;
     },
+    // @vuese
+    // Saving the selected article for FactChecker. User gets notified that article has been copied successfully.
     saveForChecker(article) {
       console.log(article);
       store.dispatch('fetchForChecker', article);

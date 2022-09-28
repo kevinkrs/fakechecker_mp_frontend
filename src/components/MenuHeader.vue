@@ -14,7 +14,15 @@ export default {
       ],
     };
   },
+  computed: {
+    history() {
+      return store.getters['getHistory'];
+    },
+  },
   methods: {
+    // @vuese
+    // Used to send user checker results and inputs to backend to use for retraining the model.
+    // @arg The parameter send to backend is the history object with title, date, url and
     donateHistory() {
       const history = store.getters['getHistory'];
       postUserHistory(history);
@@ -32,7 +40,7 @@ export default {
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class='text-h6'>
-            FactsChecker
+            FactChecker
           </v-list-item-title>
           <v-list-item-subtitle>
             Checking facts for credibility
@@ -80,11 +88,20 @@ export default {
 
       <v-app-bar-nav-icon @click='drawer = !drawer'></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Cool name we have to come up with</v-toolbar-title>
+      <v-toolbar-title>FactChecker</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-tooltip bottom>
-        <template v-slot:activator='{on, attrs}'>
+        <template v-slot:activator='{on, attrs}' v-if='history.length > 0'>
+          <v-btn v-bind='attrs'
+                 v-on='on'
+                 @click='donateHistory'
+                 class='d-flex align-center'>
+            <v-icon>mdi-heart</v-icon>
+            Contribute
+          </v-btn>
+        </template>
+        <template v-slot:activator='{on, attrs}' v-else>
           <v-btn v-bind='attrs'
                  v-on='on'
                  disabled

@@ -8,6 +8,7 @@ const state = {
   news: null,
   checkerInput: null,
   similarNews: null,
+  contact: null,
 };
 
 export default state;

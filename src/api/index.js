@@ -23,9 +23,6 @@ export function getSimilarNews({ statement, statementdate, statementurl, author 
   });
 }
 
-export function getNews() {
-  return axios.get('/news');
-}
 
 export function postUserHistory(history) {
   return axios.post('/training', {
