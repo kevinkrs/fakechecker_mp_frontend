@@ -70,8 +70,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h2>Latest News</h2>
+  <div class='pa-8'>
+    <h1>Latest News</h1>
     <div class='d-flex justify-end'>
       <v-menu bottom
               transition='slide-y-transition'
