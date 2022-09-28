@@ -8,8 +8,8 @@ npm install
 
 ## Frontend API documentation
 
-[sub-section](website/components/FactChecker.md)
-[sub-section](website/components/InferenceDashboard.md)
-[sub-section](website/components/NewsTicker.md)
-[sub-section](website/components/MenuHeader.md)
-[sub-section](website/components/PlotlyChart.md)
+[FactChecker](website/components/FactChecker.md)
+[InferenceDashboard](website/components/InferenceDashboard.md)
+[NewsTicker](website/components/NewsTicker.md)
+[MenuHeader](website/components/MenuHeader.md)
+[PlotlyChart](website/components/PlotlyChart.md)
