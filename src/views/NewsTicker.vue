@@ -1,5 +1,4 @@
 <script>
-import { getNews } from '@/api';
 import axios from 'axios';
 import store from '@/store';
 
@@ -23,12 +22,7 @@ export default {
       text: 'News where successfully copied to checker!',
     };
   },
-  computed: {
-    /*news() {
-      const news = store.getters['getNews'];
-      return news;
-    },*/
-  },
+  computed: {},
   async created() {
     // @vuese
     // Main API call to get news, utilizing newsapi.org.

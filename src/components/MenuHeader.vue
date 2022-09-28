@@ -22,8 +22,8 @@ export default {
   methods: {
     // @vuese
     // Used to send user checker results and inputs to backend to use for retraining the model.
+    // @arg The parameter send to backend is the history object with title, date, url and
     donateHistory() {
-      // @arg The parameter send to backend is the history object with title, date, url and
       const history = store.getters['getHistory'];
       postUserHistory(history);
     },

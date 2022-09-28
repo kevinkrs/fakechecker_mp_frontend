@@ -57,8 +57,6 @@ export default {
     },
   },
 
-  // @vuese
-  // Loading all available data on component create. Automatically fills where user left.
   async created() {
     this.history = store.getters['getHistory'];
     const fromNews = store.getters['getCheckerInput'];
@@ -79,8 +77,9 @@ export default {
   },
   methods: {
     // @vuese
-    // Main function to predict as well as to get similar news from backend. Starts the two transformer models and returns
-    // the prediction as well as similar database entries.
+    // Main function calling the transformer inference for a given input as well as the semantic search model.
+    // Calls two api endpoints. One for inference and the other for semantic search.
+    // @arg statement, statementdate, statementurl, author
     async predict() {
       this.loading = true;
       await getPrediction({
@@ -102,7 +101,8 @@ export default {
       this.saveToHistory();
       this.loading = false;
     },
-    // @vuese Saves current user input to state. Persists state after reloading.
+    // @vuese
+    // Saves current user input to state. Persists state after reloading.
     fetchStatement() {
       store.dispatch('fetchStatement', {
         statement: this.statement,
@@ -111,7 +111,9 @@ export default {
         author: this.author,
       });
     },
-    // @vuese Cleans user inputs.
+    // @vuese
+    // Cleans user inputs and sets them to empty strings
+    // @arg None
     clearInputs() {
       this.statementdate = '';
       this.statement = '';
@@ -125,7 +127,9 @@ export default {
       });
       store.dispatch('saveInferenceResult', this.response);
     },
-    // @vuese Pushes current user fact check to history object in state.
+    // @vuese
+    // Pushes current user fact check to history object in state.
+    // @arg None
     saveToHistory() {
       store.dispatch('saveHistory', {
         statement: this.statement,
@@ -142,12 +146,18 @@ export default {
       this.author = item.author;
       this.response = item.results;
     },
+    // @vuese
+    // Helper function to utilize datepicker.
+    // @arg date
     formatDate(date) {
       if (!date) return null;
 
       const [year, month, day] = date.split('-');
       return `${month}/${day}/${year}`;
     },
+    // @vuese
+    // Helper function to utilize datepicker.
+    // @arg date
     parseDate(date) {
       if (!date) return null;
 
