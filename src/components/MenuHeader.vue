@@ -14,6 +14,11 @@ export default {
       ],
     };
   },
+  computed: {
+    history() {
+      return store.getters['getHistory'];
+    },
+  },
   methods: {
     donateHistory() {
       const history = store.getters['getHistory'];
@@ -84,7 +89,16 @@ export default {
 
       <v-spacer></v-spacer>
       <v-tooltip bottom>
-        <template v-slot:activator='{on, attrs}'>
+        <template v-slot:activator='{on, attrs}' v-if='history.length > 0'>
+          <v-btn v-bind='attrs'
+                 v-on='on'
+                 @click='donateHistory'
+                 class='d-flex align-center'>
+            <v-icon>mdi-heart</v-icon>
+            Contribute
+          </v-btn>
+        </template>
+        <template v-slot:activator='{on, attrs}' v-else>
           <v-btn v-bind='attrs'
                  v-on='on'
                  disabled

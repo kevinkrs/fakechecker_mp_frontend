@@ -17,6 +17,9 @@ const actions = {
   fetchForChecker({ commit }, payload) {
     commit('saveForChecker', payload);
   },
+  fetchContact({ commit }, payload) {
+    commit('saveContact', payload);
+  },
 };
 
 export default actions;

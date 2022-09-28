@@ -23,6 +23,9 @@ const mutations = {
   saveForChecker(state, data) {
     state.checkerInput = data;
   },
+  saveContact(state, data) {
+    state.contact = data;
+  },
 };
 
 export default mutations;
