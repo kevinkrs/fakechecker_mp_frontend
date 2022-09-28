@@ -8,4 +8,8 @@ npm install
 
 ## Frontend API documentation
 
-- [Start](https://htmlpreview.github.io/?https://github.com/kevinkrs/fakechecker_mp_frontend/blob/documentation/website/index.html)
+[sub-section](website/components/FactChecker.md)
+[sub-section](website/components/InferenceDashboard.md)
+[sub-section](website/components/NewsTicker.md)
+[sub-section](website/components/MenuHeader.md)
+[sub-section](website/components/PlotlyChart.md)
