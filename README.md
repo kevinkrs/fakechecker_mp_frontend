@@ -13,6 +13,19 @@ It is pretty straight forward
 
 2. Start server with ```npm run serve```
 
+Now follow the README.md of the checker backend linked above. When the server is up and running, fact checking can
+start!
+
+## Features
+
+Besides the checker utility we have some more features for you:
+
+- _NewsTicker_: News API that gives you the freshest news from a country of your choice
+- _News Copy_: Just on the article of interest and all required data for a fact check is being filled directly into the
+  checker tab.
+- _History_: To allow tracking of your facts, we added a neat little history button on the corner right of the checker
+  site. It saves all you results, allowing you to open them again once clicked.
+
 ## Frontend API documentation
 
 - [FactChecker](website/components/FactChecker.md)
@@ -21,7 +34,7 @@ It is pretty straight forward
 - [MenuHeader](website/components/MenuHeader.md)
 - [PlotlyChart](website/components/PlotlyChart.md)
 
-## UI
+## UI example
 
 ![Checker](public/checker.png)
 ![News Ticker](public/news.png)
