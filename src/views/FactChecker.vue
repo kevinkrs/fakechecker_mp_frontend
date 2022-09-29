@@ -1,5 +1,5 @@
 <script>
-import { getPrediction, getSimilarNews } from '@/api';
+import { getPrediction } from '@/api';
 import store from '@/store';
 import InferenceDashboard from '@/components/InferenceDashboard';
 /* eslint-disable */
@@ -90,13 +90,13 @@ export default {
       }).then((resp) => (this.response = resp.data));
       store.dispatch('saveInferenceResult', this.response);
 
-      await getSimilarNews({
-        statement: this.statement,
-        statementdate: this.statementdate.substring(0, 9),
-        statementurl: this.statementurl,
-        author: this.author,
-      }).then((resp) => (this.similarNews = resp.data));
-      store.dispatch('saveSimilarNews', this.similarNews);
+      /* await getSimilarNews({
+         statement: this.statement,
+         statementdate: this.statementdate.substring(0, 9),
+         statementurl: this.statementurl,
+         author: this.author,
+       }).then((resp) => (this.similarNews = resp.data));
+       store.dispatch('saveSimilarNews', this.similarNews);*/
 
       this.saveToHistory();
       this.loading = false;
@@ -270,7 +270,6 @@ export default {
           </div>
         </v-col>
         <v-col md='5' sm='12' class='d-flex align-center justify-center'>
-
           <v-col v-if='!response && !loading' cols='5'>
             <v-icon>mdi-smiley-cry-outline</v-icon>
             No checks yet
@@ -283,11 +282,11 @@ export default {
               height='10'
             ></v-progress-circular>
           </v-col>
-          <div v-else>
-            <div>
+          <v-col v-else class='d-flex flex-column'>
+            <v-col>
               <InferenceDashboard :response='response'></InferenceDashboard>
-            </div>
-            <div>
+            </v-col>
+            <v-col>
               <h3>Similar Items</h3>
               <v-card v-for='(item, idx) in similarNews' :key='idx'>
                 <v-list-item three-line>
@@ -309,8 +308,8 @@ export default {
                   </v-list-item-content>
                 </v-list-item>
               </v-card>
-            </div>
-          </div>
+            </v-col>
+          </v-col>
         </v-col>
         <v-menu
           v-if='history.length !== 0'
