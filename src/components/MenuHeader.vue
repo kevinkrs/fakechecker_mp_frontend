@@ -25,7 +25,8 @@ export default {
     // @arg The parameter send to backend is the history object with title, date, url and
     async donateHistory() {
       const history = store.getters['getHistory'];
-      await postUserHistory(history);
+      for(let item in history){
+        await postUserHistory(history[item]);}
     },
   },
 };
