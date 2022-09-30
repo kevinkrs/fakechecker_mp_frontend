@@ -24,8 +24,12 @@ export function getSimilarNews({ statement, statementdate, statementurl, author 
 }
 
 
-export function postUserHistory(history) {
+export function postUserHistory({ statement, statementdate, statementurl, author, results }) {
   return axios.post('/training', {
-    input: history,
+    text: statement,
+    statementdate: statementdate,
+    source: statementurl,
+    author: author,
+    results: results,
   });
 }
