@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="docu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InferenceDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InferenceDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MenuHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/FactChecker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/FactChecker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/NewsTicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/NewsTicker.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +83,9 @@
       <workItem from="1664276698025" duration="26767000" />
       <workItem from="1664396292962" duration="10410000" />
       <workItem from="1664452788441" duration="2625000" />
-      <workItem from="1664455425016" duration="2149000" />
+      <workItem from="1664455425016" duration="3401000" />
+      <workItem from="1664558881158" duration="2000" />
+      <workItem from="1664564773027" duration="2240000" />
     </task>
     <task id="LOCAL-00001" summary="Modified history menu">
       <created>1663445219732</created>
