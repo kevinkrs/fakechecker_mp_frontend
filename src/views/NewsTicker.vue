@@ -96,17 +96,38 @@ export default {
           <v-list-item-content>
             <v-list-item-title v-text='article.title' class='mb-4 mt-2'></v-list-item-title>
             <div class='d-flex flex-row'>
-              <v-icon>mdi-newspaper-variant-multiple</v-icon>
+              <v-tooltip bottom>
+                <template v-slot:activator='{on, attrs}'>
+                  <v-icon v-bind='attrs'
+                          v-on='on'>mdi-newspaper-variant-multiple
+                  </v-icon>
+                </template>
+                Description
+              </v-tooltip>
               <v-list-item-subtitle class='ml-2 d-flex align-center'>
                 {{ article.description ? article.description : article.content }}
               </v-list-item-subtitle>
             </div>
             <div class='d-flex flex-row mt-2'>
-              <v-icon>mdi-web-check</v-icon>
+              <v-tooltip bottom>
+                <template v-slot:activator='{on, attrs}'>
+                  <v-icon v-bind='attrs'
+                          v-on='on'>mdi-web-check
+                  </v-icon>
+                </template>
+                Source
+              </v-tooltip>
               <v-list-item-subtitle v-text='article.source.name'
                                     class='ml-2 d-flex align-center'></v-list-item-subtitle>
               <v-btn icon :href='article.url' target='_blank'>
-                <v-icon>mdi-open-in-new</v-icon>
+                <v-tooltip bottom>
+                  <template v-slot:activator='{on, attrs}'>
+                    <v-icon v-bind='attrs'
+                            v-on='on'>mdi-open-in-new
+                    </v-icon>
+                  </template>
+                  Link to original source
+                </v-tooltip>
               </v-btn>
             </div>
           </v-list-item-content>

@@ -1,5 +1,5 @@
 <script>
-import { getPrediction } from '@/api';
+import { getPrediction, getSimilarNews } from '@/api';
 import store from '@/store';
 import InferenceDashboard from '@/components/InferenceDashboard';
 /* eslint-disable */
@@ -70,10 +70,9 @@ export default {
       this.statementdate = store.getters['getDate'];
       this.statementurl = store.getters['getUrl'];
       this.author = store.getters['getAuthor'];
-      this.response = store.getters['getInferenceResult'];
-      this.similarNews = store.getters['getSimilarStatements'];
-
     }
+    this.response = store.getters['getInferenceResult'];
+    this.similarNews = store.getters['getSimilarStatements'];
   },
   methods: {
     // @vuese
@@ -90,13 +89,13 @@ export default {
       }).then((resp) => (this.response = resp.data));
       store.dispatch('saveInferenceResult', this.response);
 
-      /* await getSimilarNews({
-         statement: this.statement,
-         statementdate: this.statementdate.substring(0, 9),
-         statementurl: this.statementurl,
-         author: this.author,
-       }).then((resp) => (this.similarNews = resp.data));
-       store.dispatch('saveSimilarNews', this.similarNews);*/
+      await getSimilarNews({
+        statement: this.statement,
+        statementdate: this.statementdate.substring(0, 9),
+        statementurl: this.statementurl,
+        author: this.author,
+      }).then((resp) => (this.similarNews = resp.data));
+      store.dispatch('saveSimilarNews', this.similarNews);
 
       this.saveToHistory();
       this.loading = false;
@@ -282,27 +281,57 @@ export default {
               height='10'
             ></v-progress-circular>
           </v-col>
-          <v-col v-else class='d-flex flex-column'>
-            <v-col>
+          <v-col v-else class='d-flex flex-column pt-0'>
+            <v-col class='pt-0'>
               <InferenceDashboard :response='response'></InferenceDashboard>
             </v-col>
-            <v-col>
-              <h3>Similar Items</h3>
-              <v-card v-for='(item, idx) in similarNews' :key='idx'>
+            <v-col cols='12'>
+              <hr>
+              <h3 class='my-4'>Similar fact-checked statements</h3>
+              <v-card class='mb-4' v-for='(item, idx) in similarNews' :key='idx'>
+                <v-tooltip bottom>
+                  <template v-slot:activator='{on, attrs}'>
+                    <v-chip label v-bind='attrs'
+                            v-on='on'>{{ item.scores.toFixed(2) }}
+                    </v-chip>
+                  </template>
+                  Scores of similarity to given input
+                </v-tooltip>
                 <v-list-item three-line>
                   <v-list-item-content>
                     <v-list-item-title v-text='item.title' class='mb-4 mt-2'></v-list-item-title>
                     <div class='d-flex flex-row'>
-                      <v-icon>mdi-newspaper-variant-multiple</v-icon>
-                      <v-list-item-subtitle v-text='item.statementdate' class='ml-2 d-flex align-center'>
+                      <v-tooltip bottom>
+                        <template v-slot:activator='{on, attrs}'>
+                          <v-icon v-bind='attrs'
+                                  v-on='on'>mdi-calendar-week
+                          </v-icon>
+                        </template>
+                        Factcheck date
+                      </v-tooltip>
+                      <v-list-item-subtitle v-text='item.factcheckdate' class='ml-2 d-flex align-center'>
                       </v-list-item-subtitle>
                     </div>
                     <div class='d-flex flex-row mt-2'>
-                      <v-icon>mdi-web-check</v-icon>
+                      <v-tooltip bottom>
+                        <template v-slot:activator='{on, attrs}'>
+                          <v-icon v-bind='attrs'
+                                  v-on='on'>mdi-web-check
+                          </v-icon>
+                        </template>
+                        Result
+                      </v-tooltip>
                       <v-list-item-subtitle v-text='item.label'
                                             class='ml-2 d-flex align-center'></v-list-item-subtitle>
                       <v-btn icon :href='item.url' target='_blank'>
-                        <v-icon>mdi-open-in-new</v-icon>
+                        <v-tooltip bottom>
+                          <template v-slot:activator='{on, attrs}'>
+                            <v-icon v-bind='attrs'
+                                    v-on='on'>mdi-open-in-new
+                            </v-icon>
+                          </template>
+                          Link to original source
+                        </v-tooltip>
                       </v-btn>
                     </div>
                   </v-list-item-content>

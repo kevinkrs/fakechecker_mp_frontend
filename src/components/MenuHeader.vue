@@ -1,6 +1,6 @@
 <script>
 import store from '@/store';
-import postUserHistory from '@/api';
+import { postUserHistory } from '@/api';
 
 export default {
   name: 'MenuHeader',
@@ -23,9 +23,9 @@ export default {
     // @vuese
     // Used to send user checker results and inputs to backend to use for retraining the model.
     // @arg The parameter send to backend is the history object with title, date, url and
-    donateHistory() {
+    async donateHistory() {
       const history = store.getters['getHistory'];
-      postUserHistory(history);
+      await postUserHistory(history);
     },
   },
 };

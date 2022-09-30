@@ -23,7 +23,7 @@ const getters = {
   getCheckerInput(state) {
     return state.checkerInput;
   },
-  getSimilarNews(state) {
+  getSimilarStatements(state) {
     return state.similarNews;
   },
 };

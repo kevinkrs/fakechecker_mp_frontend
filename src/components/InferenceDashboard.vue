@@ -5,7 +5,7 @@ export default {
   name: 'InferenceDashboard',
   props: {
     // Gets the inference reponse on component call to prepare the data for the PlotlyCharts component.
-    response: { type: Array, required: true, default: null },
+    response: { type: Object, required: true, default: null },
   },
   components: {
     PlotlyCharts,
