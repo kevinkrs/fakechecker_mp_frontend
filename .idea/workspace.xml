@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="docu">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/InferenceDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InferenceDashboard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MenuHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuHeader.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/FactChecker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/FactChecker.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/NewsTicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/NewsTicker.vue" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
+>>>>>>> staging
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
