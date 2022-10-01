@@ -61,9 +61,9 @@ export default {
     this.history = store.getters['getHistory'];
     const fromNews = store.getters['getCheckerInput'];
     if (fromNews) {
-      this.statement = fromNews.description;
-      this.statementdate = fromNews.publishedAt;
-      this.statementurl = fromNews.url;
+      this.statement = fromNews.excerpt;
+      this.statementdate = fromNews.published_date.substr(0, 9);
+      this.statementurl = fromNews.link;
       this.author = fromNews.author;
     } else {
       this.statement = store.getters['getStatement'];
