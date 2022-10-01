@@ -91,40 +91,45 @@ export default {
       <v-toolbar-title>FactChecker</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-tooltip bottom>
-        <template v-slot:activator='{on, attrs}' v-if='history.length > 0'>
-          <v-btn v-bind='attrs'
-                 v-on='on'
-                 @click='donateHistory'
-                 class='d-flex align-center'>
-            <v-icon>mdi-heart</v-icon>
-            Contribute
-          </v-btn>
-        </template>
-        <template v-slot:activator='{on, attrs}' v-else>
-          <v-btn v-bind='attrs'
-                 v-on='on'
-                 disabled
-                 @click='donateHistory'
-                 class='d-flex align-center'>
-            <v-icon>mdi-heart</v-icon>
-            Contribute
-          </v-btn>
-        </template>
-        <span>Donate your history and predictions for our model development!</span>
-      </v-tooltip>
-
-      <!--      <v-btn icon>
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-
-            <v-btn icon>
+      <div class='mt-2'>
+        <v-tooltip bottom>
+          <template v-slot:activator='{on, attrs}' v-if='history.length > 0'>
+            <v-btn v-bind='attrs'
+                   v-on='on'
+                   @click='donateHistory'
+                   class='d-flex align-center'>
               <v-icon>mdi-heart</v-icon>
+              Contribute
             </v-btn>
+          </template>
+          <template v-slot:activator='{on, attrs}' v-else>
+            <v-btn v-bind='attrs'
+                   v-on='on'
+                   disabled
+                   @click='donateHistory'
+                   class='d-flex align-center'>
+              <v-icon>mdi-heart</v-icon>
+              Contribute
+            </v-btn>
+          </template>
 
-            <v-btn icon>
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>-->
+          <span>Donate your history and predictions for our model development!</span>
+        </v-tooltip>
+      </div>
+
+      <a href='https://github.com/kevinkrs/masterproject_backend' target='_blank' class='text-decoration-none'>
+        <v-btn icon class='ml-2'>
+          <v-icon>mdi-github</v-icon>
+        </v-btn>
+      </a>
+      <!--
+                  <v-btn icon>
+                    <v-icon>mdi-heart</v-icon>
+                  </v-btn>
+
+                  <v-btn icon>
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>-->
     </v-app-bar>
 
     <v-main>
