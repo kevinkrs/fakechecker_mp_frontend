@@ -29,10 +29,11 @@ export default {
     this.news = store.getters['getNews'];
     if (!this.news) {
       this.loading = true;
-      await axios.get('https://newsapi.org/v2/top-headlines?country=gb&apiKey=3e03a786a0b24618b5f0839d08ec69e0')
-        .then((resp) =>
-          (this.news = resp.data.articles),
-        );
+      await axios.get(`https://api.newscatcherapi.com/v2/latest_headlines?countries=GB&topic=news&lang=en`, {
+        headers: {
+          'x-api-key': '0rIuRE2AuBqatD-pT7TtPZjMJ5Vb_TGJPFHpr-R8Yuc',
+        },
+      }).then((resp) => (this.news = resp.data.articles));
       store.dispatch('saveNews', this.news);
       this.loading = false;
     }
@@ -110,7 +111,7 @@ export default {
                 Description
               </v-tooltip>
               <v-list-item-subtitle class='ml-2 d-flex align-center'>
-                {{ article.excerpt ? article.excerpt.substr(0, 200) : article.description.substr(0, 200) }} ...
+                {{ article.excerpt ? article.excerpt.substr(0, 200) : article.summary.substr(0, 200) }} ...
               </v-list-item-subtitle>
             </div>
             <div class='d-flex flex-row mt-2'>

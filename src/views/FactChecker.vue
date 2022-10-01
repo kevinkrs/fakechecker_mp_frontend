@@ -40,6 +40,7 @@ export default {
     history: null,
     selectedHistoryItem: null,
     similarNews: null,
+    warning: false,
   }),
 
   computed: {
@@ -73,6 +74,7 @@ export default {
     }
     this.response = store.getters['getInferenceResult'];
     this.similarNews = store.getters['getSimilarStatements'];
+    this.warning = store.getters['getWarning'];
   },
   methods: {
     // @vuese
@@ -96,7 +98,7 @@ export default {
         author: this.author,
       }).then((resp) => (this.similarNews = resp.data));
       store.dispatch('saveSimilarNews', this.similarNews);
-
+      this.checkReliability(this.similarNews);
       this.saveToHistory();
       this.loading = false;
     },
@@ -109,6 +111,20 @@ export default {
         statementurl: this.statementurl,
         author: this.author,
       });
+    },
+    checkReliability(similarNews) {
+      let count = 0;
+      for (let item in similarNews) {
+        if (item.label === 'FALSE' || 'false' || 'mostly-false' || 'pants fire') {
+          count = count + 1;
+          console.log(item.label);
+        }
+      }
+      if (count > 3) {
+        this.warning = true;
+        store.dispatch('fetchWarning', this.warning);
+      }
+
     },
     // @vuese
     // Cleans user inputs and sets them to empty strings
@@ -170,6 +186,15 @@ export default {
 <template>
   <div id='InputUser'>
     <v-container>
+      <v-alert
+        v-if='warning'
+        dense
+        border='left'
+        type='warning'
+      >
+        This statement has many similar statement which are labeled as <strong>fake news</strong>. <br>
+        Please consider further research on that topic, since the model could be biased!
+      </v-alert>
       <div class='d-flex justify-space-around'>
         <v-col cols='6'>
           <v-textarea
