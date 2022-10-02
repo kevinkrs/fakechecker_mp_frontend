@@ -7,15 +7,7 @@ export default {
   name: 'FactChecker',
   components: { InferenceDashboard },
   data: (vm) => ({
-    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-      .toISOString()
-      .substr(0, 10),
-    dateFormatted: vm.formatDate(
-      new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
-    ),
-    menu1: false,
+    menu: false,
     valid: true,
     urlRules: [
 
@@ -25,7 +17,6 @@ export default {
     ],
 
     nameRules: [
-
       /* eslint-disable-next-line no-useless-escape*/
       v => (!v || /^[a-z ,.'-]+$/i.test(v)) || 'Name must be valid',
 
@@ -43,27 +34,13 @@ export default {
     warning: false,
   }),
 
-  computed: {
-    // @vuese
-    // Main function to transform user input date from the date-picker into correct form
-    computedDateFormatted() {
-      return this.formatDate(this.date);
-    },
-  },
-
-  watch: {
-    // eslint-disable-next-line no-unused-vars
-    date(val) {
-      this.dateFormatted = this.formatDate(this.date);
-    },
-  },
 
   async created() {
     this.history = store.getters['getHistory'];
     const fromNews = store.getters['getCheckerInput'];
     if (fromNews) {
       this.statement = fromNews.excerpt;
-      this.statementdate = fromNews.published_date.substr(0, 9);
+      this.statementdate = fromNews.published_date.substr(0, 10);
       this.statementurl = fromNews.link;
       this.author = fromNews.author;
     } else {
@@ -208,33 +185,51 @@ export default {
             required
             v-model='statement'
           ></v-textarea>
-          <v-col cols='12' lg='6'>
+          <v-col
+            cols='12'
+            sm='6'
+            md='4'
+          >
             <v-menu
-              ref='menu1'
-              v-model='menu1'
+              ref='menu'
+              v-model='menu'
               :close-on-content-click='false'
+              :return-value.sync='statementdate'
               transition='scale-transition'
               offset-y
-              max-width='290px'
               min-width='auto'
             >
               <template v-slot:activator='{ on, attrs }'>
                 <v-text-field
-                  v-model='computedDateFormatted'
-                  label='Date'
-                  hint='MM/DD/YYYY'
-                  persistent-hint
+                  v-model='statementdate'
+                  label='Select date'
                   prepend-icon='mdi-calendar'
+                  readonly
                   v-bind='attrs'
-                  @blur='date = parseDate(statementdate)'
                   v-on='on'
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model='date'
+                v-model='statementdate'
                 no-title
-                @input='menu1 = false'
-              ></v-date-picker>
+                scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color='primary'
+                  @click='menu = false'
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color='primary'
+                  @click='$refs.menu.save(statementdate)'
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
             </v-menu>
           </v-col>
           <v-text-field

@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="docu">
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/InferenceDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InferenceDashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MenuHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/FactChecker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/FactChecker.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/NewsTicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/NewsTicker.vue" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
->>>>>>> staging
     </list>
-=======
-    <list default="true" id="8cb55df0-4002-43a3-af4b-d56a91cd01d6" name="Changes" comment="" />
->>>>>>> staging
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="master-backup" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -94,6 +82,7 @@
       <workItem from="1664455425016" duration="3401000" />
       <workItem from="1664558881158" duration="2000" />
       <workItem from="1664564773027" duration="2240000" />
+      <workItem from="1664658427780" duration="2565000" />
     </task>
     <task id="LOCAL-00001" summary="Modified history menu">
       <created>1663445219732</created>
