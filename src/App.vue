@@ -1,10 +1,12 @@
 <script>
 import MenuHeader from '@/components/MenuHeader';
+import FooterComp from '@/components/FooterComp';
 
 export default {
   name: 'App',
 
   components: {
+    FooterComp,
     MenuHeader,
   },
 
@@ -16,8 +18,8 @@ export default {
 
 <template>
   <v-app>
-    <v-main class='pa-10'>
-      <MenuHeader />
-    </v-main>
+
+    <MenuHeader />
+    <FooterComp />
   </v-app>
 </template>
