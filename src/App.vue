@@ -18,7 +18,6 @@ export default {
 
 <template>
   <v-app>
-
     <MenuHeader />
     <FooterComp />
   </v-app>
