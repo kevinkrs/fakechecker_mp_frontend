@@ -59,6 +59,7 @@ export default {
     // Calls two api endpoints. One for inference and the other for semantic search.
     // @arg statement, statementdate, statementurl, author
     async predict() {
+      this.warning = false;
       this.loading = true;
       await getPrediction({
         statement: this.statement,
@@ -92,12 +93,15 @@ export default {
     checkReliability(similarNews) {
       let count = 0;
       for (let item in similarNews) {
-        if (item.label === 'FALSE' || 'false' || 'mostly-false' || 'pants fire') {
+        let currentItem = similarNews[item];
+        let currentLabel = currentItem.label.toString();
+        debugger
+        if (currentLabel === 'FALSE' || currentLabel === 'false' || currentLabel === 'mostly-false' || currentLabel === 'pants fire') {
           count = count + 1;
-          console.log(item.label);
         }
       }
-      if (count > 3) {
+      if (count >= 3) {
+        console.log(`Since count is ${count}, warning activated`);
         this.warning = true;
         store.dispatch('fetchWarning', this.warning);
       }
@@ -131,30 +135,15 @@ export default {
         results: this.response,
       });
     },
+    // @vuese
+    // Setter to add current fact-check item to state
+    // @arg item
     setHistoryData(item) {
       this.statement = item.statement;
       this.statementdate = item.statementdate;
       this.statementurl = item.statementurl;
       this.author = item.author;
       this.response = item.results;
-    },
-    // @vuese
-    // Helper function to utilize datepicker.
-    // @arg date
-    formatDate(date) {
-      if (!date) return null;
-
-      const [year, month, day] = date.split('-');
-      return `${month}/${day}/${year}`;
-    },
-    // @vuese
-    // Helper function to utilize datepicker.
-    // @arg date
-    parseDate(date) {
-      if (!date) return null;
-
-      const [month, day, year] = date.split('/');
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
   },
 };
