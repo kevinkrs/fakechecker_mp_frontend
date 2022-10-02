@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-axios.defaults.baseURL = 'http://fakechecker-api.rath.consulting/api';
+axios.defaults.baseURL = 'https://fakechecker-api.rath.consulting/api';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 export function getPrediction({ statement, statementdate, statementurl, author }) {
