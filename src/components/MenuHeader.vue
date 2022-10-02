@@ -8,7 +8,7 @@ export default {
     return {
       drawer: null,
       items: [
-        { title: 'CheckFacts', icon: 'mdi-web-check', to: '/' },
+        { title: 'FakeChecker', icon: 'mdi-web-check', to: '/' },
         { title: 'News', icon: 'mdi-newspaper-variant-multiple', to: '/news' },
         { title: 'Contact', icon: 'mdi-account-box', to: '/contact' },
       ],
@@ -25,8 +25,9 @@ export default {
     // @arg The parameter send to backend is the history object with title, date, url and
     async donateHistory() {
       const history = store.getters['getHistory'];
-      for(let item in history){
-        await postUserHistory(history[item]);}
+      for (let item in history) {
+        await postUserHistory(history[item]);
+      }
     },
   },
 };
@@ -41,10 +42,10 @@ export default {
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class='text-h6'>
-            FactChecker
+            FakeChecker
           </v-list-item-title>
           <v-list-item-subtitle>
-            Checking facts for credibility
+            Checking statements for credibility
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -89,7 +90,7 @@ export default {
 
       <v-app-bar-nav-icon @click='drawer = !drawer'></v-app-bar-nav-icon>
 
-      <v-toolbar-title>FactChecker</v-toolbar-title>
+      <v-toolbar-title>FakeChecker</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <div class='mt-2'>
