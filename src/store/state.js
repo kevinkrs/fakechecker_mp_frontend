@@ -9,6 +9,7 @@ const state = {
   checkerInput: null,
   similarNews: null,
   contact: null,
+  warning: false,
 };
 
 export default state;

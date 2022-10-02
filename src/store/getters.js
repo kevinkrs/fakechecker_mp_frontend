@@ -26,6 +26,9 @@ const getters = {
   getSimilarStatements(state) {
     return state.similarNews;
   },
+  getWarning(state) {
+    return state.warning;
+  },
 };
 
 export default getters;

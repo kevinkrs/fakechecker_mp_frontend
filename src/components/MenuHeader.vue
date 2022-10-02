@@ -12,6 +12,7 @@ export default {
         { title: 'News', icon: 'mdi-newspaper-variant-multiple', to: '/news' },
         { title: 'Contact', icon: 'mdi-account-box', to: '/contact' },
       ],
+      alert: false,
     };
   },
   computed: {
@@ -25,7 +26,12 @@ export default {
     // @arg The parameter send to backend is the history object with title, date, url and
     async donateHistory() {
       const history = store.getters['getHistory'];
-      await postUserHistory(history);
+      for (let item in history) {
+        await postUserHistory(history[item]);
+      }
+    },
+    toggleAlert() {
+      this.alert = true;
     },
   },
 };
@@ -33,6 +39,7 @@ export default {
 
 <template>
   <v-app id='inspire'>
+    <v-dialog v-if='alert'>Thank you for contributing!</v-dialog>
     <v-navigation-drawer
       v-model='drawer'
       app
@@ -96,7 +103,7 @@ export default {
           <template v-slot:activator='{on, attrs}' v-if='history.length > 0'>
             <v-btn v-bind='attrs'
                    v-on='on'
-                   @click='donateHistory'
+                   @click='donateHistory(); toggleAlert()'
                    class='d-flex align-center'>
               <v-icon>mdi-heart</v-icon>
               Contribute

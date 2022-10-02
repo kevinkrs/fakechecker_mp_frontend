@@ -20,6 +20,9 @@ const actions = {
   fetchContact({ commit }, payload) {
     commit('saveContact', payload);
   },
+  fetchWarning({ commit }, payload) {
+    commit('saveWarning', payload);
+  },
 };
 
 export default actions;
