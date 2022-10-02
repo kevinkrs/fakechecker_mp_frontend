@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0e5c2d2-f8c7-447b-8efa-f1469f3d34e4" name="Changes" comment="">
+    <list default="true" id="f0e5c2d2-f8c7-447b-8efa-f1469f3d34e4" name="Changes" comment="docu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/FactChecker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/FactChecker.vue" afterDir="false" />
     </list>
@@ -83,7 +83,8 @@
       <workItem from="1664558881158" duration="2000" />
       <workItem from="1664564773027" duration="2240000" />
       <workItem from="1664658427780" duration="2565000" />
-      <workItem from="1664736746191" duration="1691000" />
+      <workItem from="1664736746191" duration="2092000" />
+      <workItem from="1664739489395" duration="676000" />
     </task>
     <task id="LOCAL-00001" summary="Modified history menu">
       <created>1663445219732</created>

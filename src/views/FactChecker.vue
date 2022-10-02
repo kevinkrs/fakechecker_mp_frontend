@@ -36,6 +36,7 @@ export default {
 
 
   async created() {
+    this.warning = false;
     this.history = store.getters['getHistory'];
     const fromNews = store.getters['getCheckerInput'];
     if (fromNews) {
@@ -59,7 +60,6 @@ export default {
     // Calls two api endpoints. One for inference and the other for semantic search.
     // @arg statement, statementdate, statementurl, author
     async predict() {
-      this.warning = false;
       this.loading = true;
       await getPrediction({
         statement: this.statement,
@@ -111,6 +111,7 @@ export default {
     // Cleans user inputs and sets them to empty strings
     // @arg None
     clearInputs() {
+      this.warning = false;
       this.statementdate = '';
       this.statement = '';
       this.statementurl = '';
