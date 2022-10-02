@@ -26,6 +26,9 @@ const mutations = {
   saveContact(state, data) {
     state.contact = data;
   },
+  saveWarning(state, data) {
+    state.warning = data;
+  },
 };
 
 export default mutations;

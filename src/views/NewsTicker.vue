@@ -11,12 +11,12 @@ export default {
 
       selectedCountry: 'United Kingdom',
       countries: [
-        { name: 'Germany', iso: 'de' },
-        { name: 'USA', iso: 'us' },
-        { name: 'United Kingdom', iso: 'gb' },
-        { name: 'France', iso: 'fr' },
-        { name: 'China', iso: 'cn' },
-        { name: 'Russia', iso: 'ru' },
+        { name: 'Germany', iso: 'DE' },
+        { name: 'USA', iso: 'US' },
+        { name: 'United Kingdom', iso: 'GB' },
+        { name: 'France', iso: 'FR' },
+        { name: 'China', iso: 'CN' },
+        { name: 'Russia', iso: 'RU' },
       ],
       snackbar: false,
       text: 'News where successfully copied to checker!',
@@ -29,10 +29,11 @@ export default {
     this.news = store.getters['getNews'];
     if (!this.news) {
       this.loading = true;
-      await axios.get('https://newsapi.org/v2/top-headlines?country=gb&apiKey=3e03a786a0b24618b5f0839d08ec69e0')
-        .then((resp) =>
-          (this.news = resp.data.articles),
-        );
+      await axios.get(`https://api.newscatcherapi.com/v2/latest_headlines?countries=GB&topic=news&lang=en`, {
+        headers: {
+          'x-api-key': '0rIuRE2AuBqatD-pT7TtPZjMJ5Vb_TGJPFHpr-R8Yuc',
+        },
+      }).then((resp) => (this.news = resp.data.articles));
       store.dispatch('saveNews', this.news);
       this.loading = false;
     }
@@ -44,10 +45,15 @@ export default {
     async selectTopic(country) {
       this.loading = true;
       this.selectedCountry = country.name;
-      await axios.get(`https://newsapi.org/v2/top-headlines?country=${country.iso}&apiKey=3e03a786a0b24618b5f0839d08ec69e0`)
+      await axios.get(`https://api.newscatcherapi.com/v2/latest_headlines?countries=${country.iso}&topic=news&lang=en`, {
+        headers: {
+          'x-api-key': '0rIuRE2AuBqatD-pT7TtPZjMJ5Vb_TGJPFHpr-R8Yuc',
+        },
+      }).then((resp) => (this.news = resp.data.articles));
+      /*await axios.get(`https://newsapi.org/v2/top-headlines?country=${country.iso}&apiKey=3e03a786a0b24618b5f0839d08ec69e0`)
         .then((resp) =>
           (this.news = resp.data.articles),
-        );
+        );*/
       store.dispatch('saveNews', this.news);
       this.loading = false;
     },
@@ -105,7 +111,7 @@ export default {
                 Description
               </v-tooltip>
               <v-list-item-subtitle class='ml-2 d-flex align-center'>
-                {{ article.description ? article.description : article.content }}
+                {{ article.excerpt ? article.excerpt.substr(0, 200) : article.summary.substr(0, 200) }} ...
               </v-list-item-subtitle>
             </div>
             <div class='d-flex flex-row mt-2'>
@@ -117,9 +123,9 @@ export default {
                 </template>
                 Source
               </v-tooltip>
-              <v-list-item-subtitle v-text='article.source.name'
+              <v-list-item-subtitle v-text='article.clean_url'
                                     class='ml-2 d-flex align-center'></v-list-item-subtitle>
-              <v-btn icon :href='article.url' target='_blank'>
+              <v-btn icon :href='article.link' target='_blank'>
                 <v-tooltip bottom>
                   <template v-slot:activator='{on, attrs}'>
                     <v-icon v-bind='attrs'
