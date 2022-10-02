@@ -213,7 +213,6 @@ export default {
                 v-model='statementdate'
                 no-title
                 scrollable
-                @click='$refs.menu.save(date)'
               >
                 <v-spacer></v-spacer>
                 <v-btn
@@ -226,7 +225,7 @@ export default {
                 <v-btn
                   text
                   color='primary'
-                  @click='$refs.menu.save(date)'
+                  @click='$refs.menu.save(statementdate)'
                 >
                   OK
                 </v-btn>
